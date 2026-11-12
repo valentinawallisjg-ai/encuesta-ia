@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Encuesta sobre IA en empresas de servicios</title>
+<meta name="description" content="Encuesta de trabajo de título sobre cómo las empresas de servicios gestionan el uso de inteligencia artificial. Universidad Técnica Federico Santa María.">
+<style>
+:root{--bg:#f4f6fa;--card:#fff;--ink:#1b2433;--muted:#5d6b82;--line:#dbe2ee;--brand:#1f3a5f;--brand2:#2f6fb5;--soft:#e8f0fb;--accent:#c9892b;--ok:#2c7a4b;--err:#b3261e;--shadow:0 6px 24px rgba(31,58,95,.08)}
+@media (prefers-color-scheme:dark){:root{--bg:#10151f;--card:#18202e;--ink:#e8edf6;--muted:#9aa8bf;--line:#2a3547;--brand:#8db6ee;--brand2:#5b9be6;--soft:#1e2c42;--accent:#e0a24a;--ok:#5cc58a;--err:#ff8a80;--shadow:none}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+header{background:linear-gradient(135deg,#1f3a5f,#2f6fb5);color:#fff;padding:28px 16px 64px}
+header .in{max-width:760px;margin:0 auto}
+header small{opacity:.85;letter-spacing:.06em;text-transform:uppercase;font-size:12px}
+header h1{margin:6px 0 0;font-size:clamp(22px,4.6vw,32px);line-height:1.2;font-weight:700}
+main{max-width:760px;margin:-40px auto 48px;padding:0 16px}
+.progress{height:6px;background:rgba(255,255,255,.25);border-radius:9px;overflow:hidden;margin-top:18px}
+.progress i{display:block;height:100%;width:0;background:#fff;transition:width .35s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:24px 20px}
+@media(min-width:600px){.card{padding:32px 36px}}
+h2{margin:0 0 4px;font-size:22px;color:var(--brand)}
+.lead{color:var(--muted);margin:0 0 20px}
+.q{margin:26px 0;padding-top:4px}
+.q>label,.q>.lab{display:block;font-weight:600;margin-bottom:4px}
+.q .n{display:inline-block;min-width:34px;font-size:12px;font-weight:700;color:var(--brand2);background:var(--soft);border-radius:6px;padding:1px 7px;margin-right:8px;text-align:center}
+.help{color:var(--muted);font-size:14px;margin:0 0 8px}
+.opts{display:grid;gap:8px;margin-top:8px}
+.opt{display:flex;gap:12px;align-items:flex-start;border:1.5px solid var(--line);border-radius:12px;padding:11px 14px;cursor:pointer;background:var(--card);transition:border-color .15s,background .15s}
+.opt:hover{border-color:var(--brand2)}
+.opt input{margin-top:4px;accent-color:var(--brand2);width:18px;height:18px;flex:none}
+.opt:has(input:checked){border-color:var(--brand2);background:var(--soft)}
+.opt.dis{opacity:.45;cursor:not-allowed}
+.chip{flex:none;display:inline-grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--soft);color:var(--brand2);font-weight:700;font-size:13px}
+.opt:has(input:checked) .chip{background:var(--brand2);color:#fff}
+select,input[type=text],input[type=email],input[type=tel],textarea{width:100%;font:inherit;color:inherit;background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:11px 14px}
+select:focus,input:focus,textarea:focus{outline:2px solid var(--brand2);outline-offset:1px}
+textarea{min-height:110px;resize:vertical}
+.q.err>label,.q.err>.lab{color:var(--err)}
+.q.err .opts,.q.err select{outline:2px solid var(--err);outline-offset:3px;border-radius:12px}
+.msg{display:none;color:var(--err);font-size:14px;margin-top:6px}
+.q.err .msg{display:block}
+.group{margin:34px 0 -10px;font-size:13px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.practice{border:1px solid var(--line);border-radius:14px;padding:16px;margin:16px 0;background:var(--card)}
+.practice h3{margin:0 0 2px;font-size:17px}
+.practice .opts{gap:6px}
+.nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px}
+button{font:inherit;font-weight:600;border:0;border-radius:12px;padding:12px 22px;cursor:pointer}
+.primary{background:var(--brand2);color:#fff}
+.primary:hover{filter:brightness(1.08)}
+.ghost{background:transparent;color:var(--muted);border:1.5px solid var(--line)}
+button[disabled]{opacity:.5;cursor:wait}
+.consent{background:var(--soft);border-radius:12px;padding:16px 18px;margin:16px 0}
+.consent p{margin:0 0 10px}
+.badge{display:inline-block;background:var(--soft);color:var(--brand2);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600;margin-bottom:10px}
+.end{text-align:center;padding:12px 0}
+.end .big{font-size:44px}
+.demo{background:#fff4d6;color:#6b4b00;border:1px solid #f0d58a;border-radius:10px;padding:8px 12px;font-size:13px;margin-bottom:14px}
+footer{max-width:760px;margin:0 auto 40px;padding:0 16px;color:var(--muted);font-size:13px;text-align:center}
+.hp{position:absolute;left:-9999px}
+</style>
+</head>
+<body>
+<header><div class="in">
+  <small>Universidad Técnica Federico Santa María · Trabajo de título</small>
+  <h1>Inteligencia artificial en empresas de servicios</h1>
+  <div class="progress"><i id="bar"></i></div>
+</div></header>
+<main><div class="card" id="card" aria-live="polite"></div></main>
+<footer>Estudio académico de Valentina Wallis, Ingeniería Comercial USM. Profesor guía: Felipe Hernández.</footer>
+
+<script>
+/* ====== CONFIGURACIÓN ====== */
+const CONFIG = {
+  ENDPOINT: "",            // URL de la aplicación web de Google Apps Script (ver README). Vacío = modo prueba.
+  CONTACT_EMAIL: ""        // Correo de contacto de la investigadora (opcional, se muestra al final)
+};
+
+/* ====== DATOS ====== */
+const REGIONES=["Arica y Parinacota","Tarapacá","Antofagasta","Atacama","Coquimbo","Valparaíso","Metropolitana de Santiago","O'Higgins","Maule","Ñuble","Biobío","La Araucanía","Los Ríos","Los Lagos","Aysén","Magallanes"];
+const AÑOS=[{v:"2018-",t:"2018 o antes"}].concat([2019,2020,2021,2022,2023,2024,2025,2026].map(y=>({v:String(y),t:String(y)})));
+const O=(arr)=>arr.map(x=>Array.isArray(x)?{v:x[0],t:x[1]}:{v:x,t:x});
+
+const Q={
+A1:{n:"A1",type:"radio",label:"¿A qué se dedica principalmente su empresa?",options:O([["consultoria","Consultoría de gestión"],["ingenieria","Arquitectura, ingeniería o consultoría técnica"],["contabilidad","Contabilidad, auditoría o consultoría tributaria"],["juridico","Servicios jurídicos"],["marketing","Publicidad, marketing o estudios de mercado"],["diseno","Diseño"],["id","Investigación, desarrollo o ensayos técnicos"],["otra","Otra actividad"]]),other:"otra"},
+A2:{n:"A2",type:"radio",label:"¿Cuántas personas trabajan hoy en la empresa?",help:"Incluya a socios y dueños.",options:O([["1","1 persona"],["2-9","2 a 9"],["10-49","10 a 49"],["50-199","50 a 199"],["200+","200 o más"]])},
+A3:{n:"A3",type:"radio",label:"¿Cuál fue el nivel aproximado de ventas anuales de 2025?",help:"Los montos en pesos son aproximados, con una UF de $41.260 (noviembre de 2026).",options:O([["micro","Hasta 2.500 UF (unos $103 millones)"],["pequena","2.500,1 a 25.000 UF (hasta unos $1.031 millones)"],["mediana","25.000,1 a 100.000 UF (hasta unos $4.126 millones)"],["grande","Más de 100.000 UF (más de $4.126 millones)"],["nr","Prefiero no responder"]])},
+A4:{n:"A4",type:"select",label:"¿En qué región está la casa matriz de la empresa?",options:O(REGIONES)},
+A5:{n:"A5",type:"radio",label:"¿Cuántos años lleva la empresa en funcionamiento?",options:O([["<3","Menos de 3 años"],["3-5","3 a 5 años"],["6-10","6 a 10 años"],[">10","Más de 10 años"]])},
+A6:{n:"A6",type:"radio",label:"¿Cuál es su cargo?",options:O([["dueno","Dueño o socio"],["gg","Gerente general"],["gerente","Gerente o jefe de área"],["otro","Otro cargo con conocimiento de las decisiones sobre tecnología"]])},
+B1:{n:"B1",type:"radio",label:"¿Su empresa usa inteligencia artificial hoy en alguna actividad?",help:"Incluye asistentes de texto y herramientas similares.",options:O([["no","No, y no lo estamos evaluando"],["eval","No, pero lo estamos evaluando"],["si","Sí"]])},
+B2:{n:"B2",type:"select",label:"¿En qué año empezó a usar IA?",options:AÑOS,showIf:a=>a.B1==="si"},
+B3:{n:"B3",type:"radio",label:"¿Qué descripción se parece más a su empresa hoy?",options:O([["1","Exploramos: nos informamos o probamos herramientas sin uso sostenido."],["2","Pilotamos: hacemos pruebas acotadas en algunos procesos o equipos, sin extenderlas aún."],["3","Escalamos: usamos IA con regularidad en varias áreas o procesos, con responsables definidos."],["4","Lideramos: la IA está integrada en cómo operamos y ofrecemos servicios, y mejoramos sus usos de forma continua."]]),chip:true,showIf:a=>a.B1==="si"||a.B1==="eval"},
+B4:{n:"B4",type:"select",label:"¿En qué año llegó a esa etapa?",options:AÑOS,showIf:a=>(a.B3==="3"||a.B3==="4")&&(a.B1==="si")},
+B5:{n:"B5",type:"checks",label:"¿Para qué usa principalmente la IA?",help:"Marque hasta 3 opciones.",max:3,options:O([["docs","Redactar documentos e informes"],["datos","Analizar datos"],["clientes","Atender clientes"],["buscar","Buscar y resumir información"],["auto","Programar o automatizar tareas"],["mkt","Marketing y contenidos"],["interna","Gestión interna (personas, finanzas)"],["otro","Otro"]]),showIf:a=>a.B1==="si"}
+};
+const PRACT=[
+["C1","Plan de IA alineado a la estrategia","Estrategia y dirección",["No hay plan","Se conversa de manera informal","Hay iniciativas, sin vínculo formal con la estrategia","Plan escrito ligado a objetivos del negocio","Plan ligado a objetivos, con responsables y revisión periódica"]],
+["C2","Comprensión de la dirección sobre el valor de la IA","Estrategia y dirección",["No ve un valor claro","Interés general, sin ejemplos concretos","Conoce usos posibles para el negocio","Impulsa usos concretos","Lidera y comunica una visión de IA a toda la empresa"]],
+["C3","Cartera de casos de uso priorizada","Estrategia y dirección",["Ninguno identificado","Ideas sueltas","Lista de casos sin criterios de prioridad","Lista priorizada con criterios (impacto, costo)","Cartera priorizada, actualizada y asociada a responsables y presupuesto"]],
+["C4","Medición del retorno de las iniciativas de IA","Estrategia y dirección",["No se mide","Se juzga por percepción general","Se miden algunos usos de forma puntual","Hay indicadores definidos por caso de uso","Se mide periódicamente y eso decide dónde invertir"]],
+["C5","Criterios para escalar pilotos (pasar a uso general)","Estrategia y dirección",["No hay criterios","Se decide por intuición","Criterios informales","Criterios escritos","Criterios escritos, aplicados siempre, también para descartar pilotos"]],
+["C6","Comité o responsable de gobernanza de IA","Gobernanza y datos",["No existe","La responsabilidad es difusa","Una persona a cargo, sin mandato formal","Responsable o comité con mandato","Instancia con mandato que se reúne y reporta a la dirección"]],
+["C7","Principios éticos y políticas de uso de IA","Gobernanza y datos",["Ninguno","Se comunican de palabra","Reglas básicas (por ejemplo, no ingresar datos de clientes en herramientas públicas)","Política escrita","Política escrita, comunicada y con seguimiento de cumplimiento"]],
+["C8","Gobernanza y calidad de los datos","Gobernanza y datos",["Sin responsables ni reglas","Reglas informales según la persona","Responsables por área, sin estándares comunes","Estándares y responsables definidos","Estándares, responsables y controles de calidad periódicos"]],
+["C9","Datos consolidados en un repositorio común","Gobernanza y datos",["Archivos dispersos en equipos personales","Repositorios por área","Repositorio común parcial","Repositorio central para la mayoría de los datos","Plataforma de datos consolidada, accesible y mantenida"]],
+["C10","Capacitación en IA a los equipos","Capacidades y cultura",["Ninguna","Autoaprendizaje individual","Capacitaciones ocasionales","Plan de capacitación en áreas clave","Plan continuo para toda la organización"]],
+["C11","Uso regular de IA por los trabajadores","Capacidades y cultura",["Casi nadie la usa","Pocas personas, por iniciativa propia","Algunas áreas","La mayoría, en tareas habituales","Es parte habitual del trabajo en toda la empresa"]],
+["C12","Gestión orientada a la experimentación","Capacidades y cultura",["Se evitan los cambios","Se prueba con desconfianza","Se puede probar con autorización","Se promueve probar, con tiempo y espacios definidos","Se prueba, se aprende y se comparte de forma sistemática"]],
+["C13","Exploración de herramientas y modelos de IA","Capacidades y cultura",["Ninguna","Una herramienta general","Varias herramientas generales","Comparación de herramientas para necesidades concretas","Evaluación sistemática, incluidas soluciones a medida"]],
+["C14","Presupuesto asignado a IA","Recursos",["Sin presupuesto","Gasto ocasional en suscripciones","Presupuesto menor, definido cada año","Presupuesto regular por proyecto","Presupuesto estable en el plan anual, con seguimiento"]]
+];
+PRACT.forEach(([id,t,g,lv])=>{Q[id]={n:id,type:"radio",chip:true,practice:true,group:g,label:t,options:lv.map((x,i)=>({v:String(i+1),t:x})),showIf:a=>a.B1==="si"||a.B1==="eval"};});
+
+/* ====== PANTALLAS ====== */
+const SCREENS=[
+ {id:"intro"},
+ {id:"A",title:"Sobre su empresa",lead:"Unas preguntas para clasificar a la empresa.",qs:["A1","A2","A3","A4","A5","A6"]},
+ {id:"B",title:"Uso de inteligencia artificial",lead:"Cuánto ha avanzado la empresa y desde cuándo.",qs:["B1","B2","B3","B4","B5"],dyn:true},
+ {id:"C1",title:"Gestión y gobernanza (1 de 3)",lead:"Para cada práctica, marque el nivel que mejor describe a su empresa hoy.",qs:["C1","C2","C3","C4","C5"]},
+ {id:"C2",title:"Gestión y gobernanza (2 de 3)",lead:"Marque el nivel que mejor describe a su empresa hoy.",qs:["C6","C7","C8","C9"]},
+ {id:"C3",title:"Gestión y gobernanza (3 de 3)",lead:"Marque el nivel que mejor describe a su empresa hoy.",qs:["C10","C11","C12","C13","C14"]},
+ {id:"D",title:"Para terminar",lead:"Estas dos preguntas son opcionales."},
+ {id:"inv"},
+ {id:"fin"}
+];
+const state={i:0,a:{},id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(16).slice(2)),t0:Date.now(),sent:false};
+const $=s=>document.querySelector(s);
+const card=$("#card"), bar=$("#bar");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+function qHTML(id){
+  const q=Q[id]; if(q.showIf&&!q.showIf(state.a)) return "";
+  const v=state.a[id]; let h="";
+  if(q.practice){
+    const prev=PRACT.find(p=>p[0]===id);
+    const first=PRACT.findIndex(p=>p[0]===id);
+    if(first===0||PRACT[first-1][2]!==prev[2]) h+=`<div class="group">${esc(prev[2])}</div>`;
+  }
+  h+=`<div class="q${q.practice?" practice":""}" data-q="${id}">`;
+  const lab=q.practice?`<h3><span class="n">${q.n}</span>${esc(q.label)}</h3>`:`<span class="lab"><span class="n">${q.n}</span>${esc(q.label)}</span>`;
+  h+=lab+(q.help?`<p class="help">${esc(q.help)}</p>`:"");
+  if(q.type==="select"){
+    h+=`<select name="${id}" aria-label="${esc(q.label)}"><option value="">Seleccione…</option>${q.options.map(o=>`<option value="${esc(o.v)}"${v===o.v?" selected":""}>${esc(o.t)}</option>`).join("")}</select>`;
+  } else if(q.type==="text"||q.type==="email"||q.type==="tel"){
+    h+=`<input type="${q.type}" name="${id}" value="${esc(v||"")}" autocomplete="off">`;
+  } else if(q.type==="textarea"){
+    h+=`<textarea name="${id}">${esc(v||"")}</textarea>`;
+  } else {
+    const t=q.type==="checks"?"checkbox":"radio";
+    h+=`<div class="opts">${q.options.map((o,k)=>{const on=q.type==="checks"?(v||[]).includes(o.v):v===o.v;return `<label class="opt"><input type="${t}" name="${id}" value="${esc(o.v)}"${on?" checked":""}>${q.chip?`<span class="chip">${k+1}</span>`:""}<span>${esc(o.t)}</span></label>`}).join("")}</div>`;
+  }
+  h+=`<div class="msg">${q.type==="checks"?"Marque al menos una opción (máximo "+q.max+").":"Esta pregunta es obligatoria."}</div></div>`;
+  return h;
+}
+function nav(back,label){return `<div class="nav">${back?`<button class="ghost" data-act="back">Atrás</button>`:"<span></span>"}<button class="primary" data-act="next">${label||"Continuar"}</button></div>`}
+
+function render(){
+  const s=SCREENS[state.i]; let h="";
+  const demo=!CONFIG.ENDPOINT?`<div class="demo">Modo de prueba: las respuestas no se envían a ningún lugar.</div>`:"";
+  if(s.id==="intro"){
+    h=`${demo}<span class="badge">Unos 10 minutos</span><h2>Bienvenido/a</h2>
+    <p class="lead">Soy Valentina Wallis, estudiante de Ingeniería Comercial de la Universidad Técnica Federico Santa María. Esta encuesta es parte de mi trabajo de título, guiado por el profesor Felipe Hernández, sobre cómo las empresas de servicios gestionan el uso de inteligencia artificial (IA).</p>
+    <div class="consent"><p>Debe responder una persona que conozca las decisiones de la empresa sobre tecnología.</p>
+    <p>La participación es voluntaria y puede abandonar la encuesta en cualquier momento. Las respuestas se usarán solo con fines académicos y se analizarán de forma agregada; no se publicará el nombre de ninguna empresa ni persona. La encuesta no pide datos personales, salvo que usted decida dejarlos al final.</p></div>
+    <div class="q" data-q="consent"><label class="opt"><input type="checkbox" name="consent"${state.a.consent?" checked":""}><span>He leído esta información y acepto participar.</span></label><div class="msg">Debe aceptar para continuar.</div></div>
+    ${nav(false,"Comenzar")}`;
+  } else if(s.id==="D"){
+    h=`<h2>${s.title}</h2><p class="lead">${s.lead}</p>
+    <div class="q" data-q="D1"><span class="lab"><span class="n">D1</span>¿Qué ha facilitado o dificultado más que su empresa avance en el uso de IA?</span><textarea name="D1">${esc(state.a.D1||"")}</textarea></div>
+    <div class="q" data-q="D2"><span class="lab"><span class="n">D2</span>¿Desea recibir un resumen de los resultados?</span><p class="help">Si es así, deje su correo. Se guarda aparte de sus respuestas.</p><input type="email" name="D2" placeholder="correo@empresa.cl" value="${esc(state.a.D2||"")}"></div>
+    <input class="hp" tabindex="-1" autocomplete="off" name="web" aria-hidden="true">
+    ${nav(true,"Enviar encuesta")}`;
+  } else if(s.id==="inv"){
+    h=`<span class="badge">Invitación opcional</span><h2>¿Conversamos?</h2>
+    <p class="lead">Ya envió su encuesta, gracias. Esta invitación es aparte y no afecta lo anterior.</p>
+    <div class="consent"><p>Me gustaría conversar con usted entre 30 y 40 minutos, por videollamada o en persona, para entender cómo gestionan el uso de IA en la práctica. La entrevista es voluntaria, puede rechazarla o retirarse cuando quiera, y solo se grabará si usted lo autoriza. Lo que diga se usará solo con fines académicos y se publicará sin nombres de personas ni de empresas. Sus datos de contacto se guardan aparte de las respuestas de la encuesta, se usan solo para coordinar la entrevista y se eliminan al terminar el estudio.</p></div>
+    <div class="q" data-q="iconsent"><label class="opt"><input type="checkbox" name="iconsent"><span>Acepto que me contacten para una entrevista.</span></label><div class="msg">Marque la casilla para dejar sus datos.</div></div>
+    <div class="q" data-q="iname"><label>Nombre</label><input type="text" name="iname"></div>
+    <div class="q" data-q="icargo"><label>Cargo</label><input type="text" name="icargo"></div>
+    <div class="q" data-q="imail"><label>Correo</label><input type="email" name="imail"><div class="msg">Ingrese un correo válido.</div></div>
+    <div class="q" data-q="itel"><label>Teléfono (opcional)</label><input type="tel" name="itel"></div>
+    <div class="nav"><button class="ghost" data-act="skip">No, gracias</button><button class="primary" data-act="invite">Enviar mis datos</button></div>`;
+  } else if(s.id==="fin"){
+    h=`<div class="end"><div class="big">✓</div><h2>Gracias por participar</h2><p class="lead">${state.out?"Esta encuesta está dirigida a empresas de servicios con al menos dos personas y ventas sobre 2.500 UF. Agradezco su tiempo.":"Sus respuestas ya quedaron registradas."}${CONFIG.CONTACT_EMAIL?` Si tiene dudas, escriba a <a href="mailto:${esc(CONFIG.CONTACT_EMAIL)}">${esc(CONFIG.CONTACT_EMAIL)}</a>.`:""}</p></div>`;
+  } else {
+    h=`<h2>${s.title}</h2><p class="lead">${s.lead}</p>${s.qs.map(qHTML).join("")}${nav(state.i>1,"Continuar")}`;
+  }
+  card.innerHTML=h;
+  const total=SCREENS.length-1; bar.style.width=Math.min(100,Math.round(state.i/total*100))+"%";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function collect(){
+  card.querySelectorAll("[name]").forEach(el=>{
+    const n=el.name; if(n==="web") return;
+    if(el.type==="radio"){ if(el.checked) state.a[n]=el.value; }
+    else if(el.type==="checkbox"){
+      if(Q[n]&&Q[n].type==="checks"){ state.a[n]=[...card.querySelectorAll(`[name="${n}"]:checked`)].map(x=>x.value); }
+      else state.a[n]=el.checked;
+    } else state.a[n]=el.value.trim();
+  });
+}
+function validate(s){
+  collect(); let ok=true, first=null;
+  const mark=(id,bad)=>{const el=card.querySelector(`[data-q="${id}"]`); if(el) el.classList.toggle("err",bad); if(bad){ok=false; first=first||el;}};
+  if(s.id==="intro") mark("consent",!state.a.consent);
+  (s.qs||[]).forEach(id=>{const q=Q[id]; if(q.showIf&&!q.showIf(state.a)) return;
+    const v=state.a[id]; let bad=false;
+    if(q.type==="checks") bad=!v||v.length<1||v.length>q.max; else bad=!v;
+    mark(id,bad);});
+  if(first) first.scrollIntoView({behavior:"smooth",block:"center"});
+  return ok;
+}
+function goto(id){state.i=SCREENS.findIndex(s=>s.id===id); render();}
+async function post(payload){
+  if(!CONFIG.ENDPOINT){console.log("[modo prueba]",payload);return true;}
+  try{await fetch(CONFIG.ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)});return true;}catch(e){return false;}
+}
+async function submitSurvey(btn){
+  if(card.querySelector('[name="web"]').value) return;
+  collect(); btn.disabled=true; btn.textContent="Enviando…";
+  const a=state.a, out={tipo:"encuesta",id:state.id,fecha:new Date().toISOString(),duracion_seg:Math.round((Date.now()-state.t0)/1000),
+    A1:a.A1,A2:a.A2,A3:a.A3,A4:a.A4,A5:a.A5,A6:a.A6,B1:a.B1,B2:a.B2||"",B3:a.B3||"",B4:a.B4||"",B5:(a.B5||[]).join("|"),D1:a.D1||"",quiere_resumen:a.D2?"si":"no"};
+  PRACT.forEach(p=>out[p[0]]=a[p[0]]||"");
+  const ok=await post(out);
+  if(a.D2) await post({tipo:"resumen",id:state.id,correo:a.D2});
+  if(!ok){btn.disabled=false;btn.textContent="Reintentar envío";alert("No se pudo enviar. Revise su conexión e intente de nuevo.");return;}
+  state.sent=true; goto("inv");
+}
+async function sendOut(){ /* empresa fuera del alcance: se guarda solo el filtro */
+  const a=state.a; await post({tipo:"filtro",id:state.id,fecha:new Date().toISOString(),A1:a.A1,A2:a.A2,A3:a.A3,motivo:"fuera_de_alcance"});
+}
+card.addEventListener("click",async e=>{
+  const b=e.target.closest("button"); if(!b) return; const act=b.dataset.act; const s=SCREENS[state.i];
+  if(act==="back"){collect(); if(s.id==="C1") return goto("B"); if(s.id==="D"){ return goto(state.a.B1==="no"?"B":"C3"); } state.i=Math.max(0,state.i-1); return render();}
+  if(act==="next"){
+    if(!validate(s)) return;
+    if(s.id==="A"){ if(state.a.A2==="1"||state.a.A3==="micro"){state.out=true; await sendOut(); return goto("fin");} }
+    if(s.id==="B"){ if(state.a.B1==="no") return goto("D"); }
+    if(s.id==="D") return submitSurvey(b);
+    state.i++; return render();
+  }
+  if(act==="skip"){state.i=SCREENS.length-1;return render();}
+  if(act==="invite"){
+    collect(); const a=state.a;
+    if(!a.iconsent){card.querySelector('[data-q="iconsent"]').classList.add("err");return;}
+    const okm=/^\S+@\S+\.\S+$/.test(a.imail||""); card.querySelector('[data-q="imail"]').classList.toggle("err",!okm); if(!okm) return;
+    b.disabled=true; b.textContent="Enviando…";
+    await post({tipo:"entrevista",id:state.id,fecha:new Date().toISOString(),nombre:a.iname||"",cargo:a.icargo||"",correo:a.imail,telefono:a.itel||""});
+    state.i=SCREENS.length-1; render();
+  }
+});
+card.addEventListener("change",e=>{
+  collect();
+  const s=SCREENS[state.i];
+  if(s.dyn&&["B1","B3"].includes(e.target.name)){ // re-render conditional questions keeping scroll
+    const y=window.scrollY; const inner=s.qs.map(qHTML).join(""); const nv=card.querySelector(".nav");
+    card.querySelectorAll("[data-q]").forEach(x=>x.remove()); nv.insertAdjacentHTML("beforebegin",inner); window.scrollTo(0,y);
+  }
+  if(e.target.type==="checkbox"&&Q[e.target.name]?.type==="checks"){
+    const max=Q[e.target.name].max, on=card.querySelectorAll(`[name="${e.target.name}"]:checked`);
+    card.querySelectorAll(`[name="${e.target.name}"]`).forEach(x=>{const dis=!x.checked&&on.length>=max; x.disabled=dis; x.closest(".opt").classList.toggle("dis",dis);});
+  }
+  const qq=e.target.closest(".q"); if(qq) qq.classList.remove("err");
+});
+render();
+</script>
+</body>
+</html>
