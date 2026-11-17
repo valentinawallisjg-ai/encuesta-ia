@@ -1,0 +1,4 @@
+# Datos de contacto y planillas: no deben subirse al repositorio público
+*.xlsx
+*.xls
+*.csv
