@@ -5,6 +5,7 @@ Formulario de una sola página (`index.html`, sin dependencias) que guarda las r
 ## Cómo funciona
 - Pantalla de consentimiento, bloque A (filtro y tamaño), B (ritmo de adopción), C (14 prácticas con 5 niveles) y D (cierre).
 - Incluye a todas las empresas, también microempresas (1 persona o ventas hasta 2.500 UF). El tamaño queda registrado en A2 y A3 para segmentar en el análisis.
+- Las empresas de una sola persona (A2 = 1 persona) ven una redacción adaptada de B3 y de C1 a C12, con la misma escala; la columna `version_redaccion` de la planilla indica qué versión vio cada respuesta.
 - Si responde que no usa IA ni la evalúa, se omiten B2 a B5 y el bloque C.
 - La invitación a entrevista es una pantalla aparte, con su propio consentimiento. Los datos de contacto van a otra hoja (o a otra planilla) y no se mezclan con las respuestas.
 - Sin `ENDPOINT` configurado, funciona en modo de prueba y no envía nada.

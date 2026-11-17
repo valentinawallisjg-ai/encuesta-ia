@@ -113,6 +113,31 @@ const PRACT=[
 ];
 PRACT.forEach(([id,t,g,lv])=>{Q[id]={n:id,type:"radio",chip:true,practice:true,group:g,label:t,options:lv.map((x,i)=>({v:String(i+1),t:x})),showIf:a=>a.B1==="si"||a.B1==="eval"};});
 
+/* ====== VARIANTE PARA EMPRESAS DE UNA SOLA PERSONA (A2 = "1") ======
+   Mismas preguntas y misma escala (los valores guardados no cambian); solo se adapta la redacción.
+   Formato: [id, título alternativo o null, niveles]. Las preguntas que no aparecen aquí se muestran igual. */
+const SOLO_DATA=[
+["B3",null,["Exploro: me informo o pruebo herramientas sin uso sostenido.","Piloto: hago pruebas acotadas en algunas tareas, sin extenderlas aún.","Escalo: uso IA con regularidad en varias partes de mi trabajo.","Lidero: la IA está integrada en cómo trabajo y ofrezco mis servicios, y mejoro sus usos de forma continua."]],
+["C1",null,["No tengo un plan","Lo he pensado, pero sin nada concreto","Uso IA en algunas tareas, sin vincularlo con los objetivos de mi negocio","Tengo un plan escrito ligado a los objetivos de mi negocio","Tengo un plan escrito ligado a objetivos, con plazos, y lo reviso periódicamente"]],
+["C2","Claridad sobre para qué sirve la IA en el negocio",["No tengo una idea clara de para qué sirve la IA en mi negocio","Tengo interés general, pero sin ejemplos concretos","Identifico usos posibles para mi negocio","Aplico usos concretos en mi trabajo","Tengo una visión clara de cómo la IA cambia mi negocio y la comunico a clientes o colaboradores externos"]],
+["C3",null,["No tengo proyectos identificados","Tengo ideas sueltas, sin registro","Tengo una lista de proyectos, sin criterios para ordenarlos","Ordeno la lista por impacto y costo","Reviso la lista periódicamente, con plazos y presupuesto asignado"]],
+["C4",null,["No lo mido","Lo juzgo por percepción general","Mido algunos usos de forma puntual (por ejemplo, el tiempo ahorrado)","Tengo indicadores definidos por caso de uso","Mido periódicamente y eso decide dónde invierto"]],
+["C5","Criterios para adoptar de forma permanente lo que se prueba",["No tengo criterios","Decido por intuición","Tengo criterios informales","Tengo criterios escritos","Tengo criterios escritos y los aplico siempre, también para descartar pruebas"]],
+["C6","Responsabilidad sobre cómo se usa la IA",["No me he planteado quién responde por el uso de IA","Lo veo caso a caso, sin reglas propias","Asumo la responsabilidad, pero sin una rutina para revisarlo","Dedico un tiempo definido a revisar qué herramientas uso y con qué datos","Reviso periódicamente mi uso de IA y me apoyo en asesoría externa cuando hace falta (legal o técnica)"]],
+["C7",null,["Ninguno","Los tengo en mente, sin escribirlos","Sigo reglas básicas (por ejemplo, no ingresar datos de clientes en herramientas públicas)","Tengo reglas escritas","Tengo reglas escritas, las informo a clientes o colaboradores externos y reviso que se cumplan"]],
+["C8","Orden y calidad de los datos",["Sin reglas para guardar ni cuidar los datos","Los ordeno de manera informal, según el momento","Tengo criterios propios, pero no los aplico siempre","Tengo criterios definidos para nombrar, guardar y actualizar los datos","Tengo criterios definidos y reviso periódicamente la calidad de los datos"]],
+["C9",null,["Archivos dispersos en distintos equipos y cuentas","Carpetas separadas por cliente o por tema, sin conexión entre sí","Repositorio común parcial","Repositorio central para la mayoría de los datos","Plataforma de datos consolidada, accesible, respaldada y mantenida"]],
+["C10","Capacitación propia en IA",["Ninguna","Aprendo por mi cuenta, sobre la marcha","Tomo cursos o talleres ocasionales","Tengo un plan de capacitación en los temas clave para mi negocio","Tengo un plan de capacitación continuo y lo extiendo a colaboradores externos"]],
+["C11","Uso regular de IA en el trabajo",["Casi no la uso","La uso de vez en cuando","La uso en algunas tareas","La uso en la mayoría de mis tareas habituales","Es parte habitual de todo mi trabajo"]],
+["C12","Disposición a experimentar",["Evito los cambios","Pruebo con desconfianza","Pruebo solo cuando un cliente o una necesidad lo exige","Reservo tiempo para probar cosas nuevas","Pruebo, registro lo que aprendo y lo incorporo de forma sistemática"]]
+];
+const SOLO={}; SOLO_DATA.forEach(([id,t,lv])=>{SOLO[id]={t,lv};});
+const esSolo=()=>state.a.A2==="1";
+function variante(id){
+  const q=Q[id], s=SOLO[id]; if(!s||!esSolo()) return q;
+  return Object.assign({},q,{label:s.t||q.label,options:s.lv.map((x,i)=>({v:String(i+1),t:x}))});
+}
+
 /* ====== PANTALLAS ====== */
 const SCREENS=[
  {id:"intro"},
@@ -131,7 +156,7 @@ const card=$("#card"), bar=$("#bar");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 
 function qHTML(id){
-  const q=Q[id]; if(q.showIf&&!q.showIf(state.a)) return "";
+  const q=variante(id); if(q.showIf&&!q.showIf(state.a)) return "";
   const v=state.a[id]; let h="";
   if(q.practice){
     const prev=PRACT.find(p=>p[0]===id);
@@ -222,7 +247,7 @@ async function submitSurvey(btn){
   if(card.querySelector('[name="web"]').value) return;
   collect(); btn.disabled=true; btn.textContent="Enviando…";
   const a=state.a, out={tipo:"encuesta",id:state.id,fecha:new Date().toISOString(),duracion_seg:Math.round((Date.now()-state.t0)/1000),
-    A1:a.A1,A2:a.A2,A3:a.A3,A4:a.A4,A5:a.A5,A6:a.A6,B1:a.B1,B2:a.B2||"",B3:a.B3||"",B4:a.B4||"",B5:(a.B5||[]).join("|"),D1:a.D1||"",quiere_resumen:a.D2?"si":"no"};
+    A1:a.A1,A2:a.A2,A3:a.A3,A4:a.A4,A5:a.A5,A6:a.A6,B1:a.B1,B2:a.B2||"",B3:a.B3||"",B4:a.B4||"",B5:(a.B5||[]).join("|"),D1:a.D1||"",quiere_resumen:a.D2?"si":"no",version_redaccion:esSolo()?"unipersonal":"general"};
   PRACT.forEach(p=>out[p[0]]=a[p[0]]||"");
   const ok=await post(out);
   if(a.D2) await post({tipo:"resumen",id:state.id,correo:a.D2});
